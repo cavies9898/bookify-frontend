@@ -1,0 +1,113 @@
+<mat-card appearance="outlined" class="filters-card">
+  <div class="filters">
+    <mat-form-field appearance="outline" class="status-field">
+      <mat-label>Estado</mat-label>
+      <mat-select [value]="status()" (selectionChange)="onStatusChange($event.value)">
+        @for (option of statusOptions; track option.value) {
+          <mat-option [value]="option.value">{{ option.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="date-field">
+      <mat-label>Desde</mat-label>
+      <input
+        matInput
+        [matDatepicker]="fromPicker"
+        [value]="from()"
+        (dateChange)="onFromChange($event.value)"
+      />
+      <mat-datepicker-toggle matIconSuffix [for]="fromPicker"></mat-datepicker-toggle>
+      <mat-datepicker #fromPicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="date-field">
+      <mat-label>Hasta</mat-label>
+      <input
+        matInput
+        [matDatepicker]="toPicker"
+        [value]="to()"
+        (dateChange)="onToChange($event.value)"
+      />
+      <mat-datepicker-toggle matIconSuffix [for]="toPicker"></mat-datepicker-toggle>
+      <mat-datepicker #toPicker></mat-datepicker>
+    </mat-form-field>
+  </div>
+</mat-card>
+
+<app-loading [loading]="loading()" label="Cargando reservas…">
+  @if (error()) {
+    <div class="error-box" role="alert">
+      <p>{{ error() }}</p>
+      <button mat-flat-button type="button" (click)="load()">Reintentar</button>
+    </div>
+  } @else if ((page()?.content?.length ?? 0) === 0) {
+    <app-empty-state
+      title="No hay reservas"
+      subtitle="No se encontraron reservas con los filtros actuales."
+    />
+  } @else {
+    <mat-card appearance="outlined" class="table-card">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Servicio</th>
+              @if (showClient()) {
+                <th>Cliente</th>
+              }
+              <th>Inicio</th>
+              <th>Fin</th>
+              <th>Estado</th>
+              <th class="align-right">Precio</th>
+              <th class="align-right">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (booking of page()!.content; track booking.id) {
+              <tr>
+                <td>
+                  <span class="service-name">{{ booking.service.name }}</span>
+                </td>
+                @if (showClient()) {
+                  <td>
+                    <span class="client-name">{{ booking.userName }}</span>
+                    <span class="client-email">{{ booking.userEmail }}</span>
+                  </td>
+                }
+                <td>{{ booking.startAt | date: 'd MMM yyyy, HH:mm' }}</td>
+                <td>{{ booking.endAt | date: 'HH:mm' }}</td>
+                <td><app-status-badge [status]="booking.status" /></td>
+                <td class="align-right">
+                  <span class="cell-price">
+                    {{ booking.service.price | currency: environment.currency : 'symbol' : '1.2-2' : 'es-ES' }}
+                  </span>
+                </td>
+                <td class="align-right">
+                  @if (booking.status !== 'CANCELLED') {
+                    <button
+                      mat-stroked-button
+                      color="warn"
+                      type="button"
+                      (click)="cancelBooking(booking)"
+                    >
+                      Cancelar
+                    </button>
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </mat-card>
+
+    <app-paginator
+      [pageIndex]="page()!.number"
+      [totalElements]="page()!.totalElements"
+      [totalPages]="page()!.totalPages"
+      [size]="page()!.size"
+      (pageChange)="onPageChange($event)"
+    />
+  }
+</app-loading>

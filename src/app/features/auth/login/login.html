@@ -1,0 +1,214 @@
+<div class="login-page" animate.enter="route-auth-enter">
+  <div class="login-container">
+    <!-- Panel visual -->
+    <section class="login-visual">
+      <div class="visual-content">
+        <div class="logo">
+          <span class="logo-icon">
+            <mat-icon>calendar_month</mat-icon>
+          </span>
+          <span>Bookify</span>
+        </div>
+
+        <div class="visual-copy">
+          <span class="eyebrow">GESTIÓN DE RESERVAS</span>
+
+          <h1>
+            Todo lo que necesitas.
+            <span>En un solo lugar.</span>
+          </h1>
+
+          <p>
+            Gestiona tus citas, descubre nuevos servicios y reserva tu próximo espacio sin
+            complicaciones.
+          </p>
+        </div>
+
+        <!-- Mini calendario decorativo -->
+        <div class="calendar-card">
+          <div class="calendar-header">
+            <div>
+              <small>AGOSTO 2026</small>
+              <strong>Mis reservas</strong>
+            </div>
+
+            <span class="calendar-check">
+              <mat-icon>check</mat-icon>
+            </span>
+          </div>
+
+          <div class="calendar-days">
+            <span>L</span>
+            <span>M</span>
+            <span>M</span>
+            <span>J</span>
+            <span>V</span>
+            <span>S</span>
+            <span>D</span>
+          </div>
+
+          <div class="calendar-grid">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+            <span>10</span>
+
+            <span>11</span>
+            <span>12</span>
+            <span class="active">13</span>
+            <span>14</span>
+            <span>15</span>
+            <span>16</span>
+            <span>17</span>
+
+            <span>18</span>
+            <span>19</span>
+            <span>20</span>
+            <span>21</span>
+            <span>22</span>
+            <span>23</span>
+            <span>24</span>
+          </div>
+
+          <div class="reservation">
+            <span class="reservation-dot"></span>
+
+            <div>
+              <strong>Consulta confirmada</strong>
+              <small>Hoy · 10:00 AM</small>
+            </div>
+
+            <mat-icon>chevron_right</mat-icon>
+          </div>
+        </div>
+      </div>
+
+      <div class="visual-decoration visual-decoration--one"></div>
+      <div class="visual-decoration visual-decoration--two"></div>
+    </section>
+
+    <!-- Formulario -->
+    <section class="login-form">
+      <div class="form-wrapper">
+        <div class="mobile-logo">
+          <span class="logo-icon">
+            <mat-icon>calendar_month</mat-icon>
+          </span>
+          <strong>Bookify</strong>
+        </div>
+
+        <header class="form-header">
+          <span class="welcome">Bienvenido</span>
+
+          <h2>Inicia sesión</h2>
+
+          <p>Accede a tu cuenta para continuar.</p>
+        </header>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+          @if (formError()) {
+            <div class="form-error" role="alert">
+              <mat-icon aria-hidden="true"> error_outline </mat-icon>
+
+              <span>{{ formError() }}</span>
+            </div>
+          }
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Correo electrónico</mat-label>
+
+            <mat-icon matPrefix aria-hidden="true"> mail_outline </mat-icon>
+
+            <input
+              matInput
+              formControlName="email"
+              type="email"
+              autocomplete="email"
+              placeholder="tu@email.com"
+            />
+
+            @if (form.controls.email.touched && form.controls.email.invalid) {
+              <mat-error>
+                {{ emailError() }}
+              </mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Contraseña</mat-label>
+
+            <mat-icon matPrefix aria-hidden="true"> lock_outline </mat-icon>
+
+            <input
+              matInput
+              formControlName="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="••••••••"
+            />
+
+            @if (form.controls.password.touched && form.controls.password.invalid) {
+              <mat-error>
+                {{ passwordError() }}
+              </mat-error>
+            }
+          </mat-form-field>
+
+          <div class="form-options">
+            <label class="remember">
+              <input type="checkbox" />
+              <span>Recordarme</span>
+            </label>
+
+            <a routerLink="/forgot-password"> ¿Olvidaste tu contraseña? </a>
+          </div>
+
+          <button
+            mat-flat-button
+            color="primary"
+            class="login-button full-width"
+            type="submit"
+            [disabled]="submitting()"
+          >
+            @if (submitting()) {
+              <mat-spinner diameter="20"></mat-spinner>
+            } @else {
+              <ng-container>
+                <span>Iniciar sesión</span>
+                <mat-icon>arrow_forward</mat-icon>
+              </ng-container>
+            }</button
+          >.
+        </form>
+
+        <div class="divider">
+          <span>o</span>
+        </div>
+
+        <div class="register">
+          <span>¿Todavía no tienes una cuenta?</span>
+
+          <a mat-button routerLink="/register"> Crear cuenta </a>
+        </div>
+
+        <p class="terms">
+          Al continuar aceptas nuestros
+          <a href="#">Términos de servicio</a>
+          y
+          <a href="#">Política de privacidad</a>.
+        </p>
+      </div>
+    </section>
+  </div>
+</div>

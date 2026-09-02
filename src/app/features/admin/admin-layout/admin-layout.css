@@ -1,0 +1,49 @@
+.page-header {
+  text-align: center;
+  margin-bottom: 28px;
+  animation: bk-fade-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.page-header h1 {
+  margin: 0 0 6px;
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.page-header p {
+  margin: 0 auto;
+  max-width: 520px;
+}
+
+.admin-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--bk-bg);
+  border: 1px solid var(--bk-border);
+  width: fit-content;
+  margin: 0 auto;
+  animation: bk-fade-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.06s both;
+}
+
+.admin-tabs a {
+  border-radius: 999px;
+  font-weight: 600;
+  color: var(--bk-text-muted);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.admin-tabs a.mdc-tab--active {
+  background: var(--bk-primary-soft);
+  color: var(--bk-primary);
+}
+
+.tab-content {
+  padding-top: 24px;
+  animation: bk-fade-up 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}

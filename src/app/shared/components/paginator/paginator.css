@@ -1,0 +1,29 @@
+:host {
+  display: block;
+}
+
+.paginator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding: 12px 20px;
+  border-radius: var(--bk-radius);
+  background: var(--bk-surface);
+  border: 1px solid var(--bk-border);
+  box-shadow: var(--bk-shadow);
+  animation: bk-fade-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.summary {
+  color: var(--bk-text-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}

@@ -1,0 +1,153 @@
+<div class="bk-page">
+  <app-loading [loading]="loading()" label="Cargando servicio…">
+    @if (error()) {
+      <div class="error-box" role="alert">
+        <p>{{ error() }}</p>
+        <button mat-flat-button type="button" (click)="retry()">Reintentar</button>
+      </div>
+    } @else if (service(); as service) {
+      <div class="detail-layout">
+        <aside class="info-panel" aria-label="Información del servicio">
+          <div class="info-hero">
+            <span class="info-icon" aria-hidden="true">
+              <mat-icon>star</mat-icon>
+            </span>
+            <p class="info-eyebrow">Servicio</p>
+            <h1 class="info-title">{{ service.name }}</h1>
+            <p class="info-price">
+              {{ service.price | currency: environment.currency : 'symbol' : '1.2-2' : 'es-ES' }}
+              <span class="info-price-note">/ reserva</span>
+            </p>
+          </div>
+
+          <div class="info-body">
+            @if (service.description) {
+              <p class="info-description">{{ service.description }}</p>
+            }
+
+            <dl class="info-list">
+              <div class="info-item">
+                <dt><mat-icon aria-hidden="true">schedule</mat-icon> Duración</dt>
+                <dd>{{ formatted.minutesToLabel(service.durationMinutes) }}</dd>
+              </div>
+              <div class="info-item">
+                <dt><mat-icon aria-hidden="true">access_time_filled</mat-icon> Horario</dt>
+                <dd>
+                  {{ formatted.formatTimeOfDay(service.openingTime) }}–{{
+                    formatted.formatTimeOfDay(service.closingTime)
+                  }}
+                </dd>
+              </div>
+              <div class="info-item">
+                <dt><mat-icon aria-hidden="true">group</mat-icon> Capacidad</dt>
+                <dd>{{ service.capacity }} persona(s)</dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
+
+        <section class="booking-panel" aria-label="Reservar cita">
+          <header class="booking-header">
+            <h2>Reservar cita</h2>
+            <p class="text-muted">Elige el día y el horario disponible.</p>
+          </header>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Fecha</mat-label>
+            <mat-icon matPrefix aria-hidden="true">calendar_today</mat-icon>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              [min]="minDate"
+              [value]="selectedDate()"
+              (dateChange)="onDateChange($event.value)"
+            />
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          @if (selectedDate()) {
+            <h3 class="slots-title">Horarios disponibles</h3>
+            <app-loading [loading]="availabilityLoading()" label="Consultando disponibilidad…">
+              @if (availabilityError()) {
+                <p class="inline-error" role="alert">{{ availabilityError() }}</p>
+              } @else if ((availability()?.slots?.length ?? 0) === 0) {
+                <p class="text-muted">No hay horarios disponibles para esta fecha.</p>
+              } @else {
+                <div class="slots-grid" aria-label="Horarios disponibles">
+                  @for (slot of availability()!.slots; track slot.startAt; let i = $index) {
+                    <button
+                      type="button"
+                      class="slot-chip"
+                      [class.slot-unavailable]="!slot.available"
+                      [class.slot-selected]="isSlotSelected(slot)"
+                      [style.--i]="i"
+                      [disabled]="!slot.available"
+                      [attr.aria-pressed]="isSlotSelected(slot)"
+                      (click)="selectSlot(slot)"
+                    >
+                      {{ formatted.formatSlotTime(slot.startAt) }}
+                    </button>
+                  }
+                </div>
+              }
+            </app-loading>
+
+            @if (selectedSlot(); as slot) {
+              <div class="summary-card">
+                <h3>Resumen de la reserva</h3>
+                <dl class="summary-list">
+                  <dt>Servicio</dt>
+                  <dd>{{ service.name }}</dd>
+                  <dt>Fecha</dt>
+                  <dd>{{ selectedDate() | date: "EEEE, d 'de' MMMM 'de' yyyy" }}</dd>
+                  <dt>Hora</dt>
+                  <dd>
+                    {{ formatted.formatSlotTime(slot.startAt) }} –
+                    {{ formatted.formatSlotTime(slot.endAt) }}
+                  </dd>
+                  <dt>Precio</dt>
+                  <dd>{{ service.price | currency: environment.currency : 'symbol' : '1.2-2' : 'es-ES' }}</dd>
+                </dl>
+
+                @if (bookingError()) {
+                  <div class="inline-error" role="alert">{{ bookingError() }}</div>
+                }
+
+                @if (bookingSuccess()) {
+                  <div class="success-box" role="status">
+                    <mat-icon aria-hidden="true">check_circle</mat-icon>
+                    <span>
+                      Reserva confirmada correctamente.
+                      <a routerLink="/mis-reservas">Ver mis reservas</a>
+                    </span>
+                  </div>
+                } @else {
+                  <button
+                    mat-flat-button
+                    color="primary"
+                    class="full-width confirm-btn"
+                    type="button"
+                    [disabled]="booking()"
+                    (click)="confirmBooking()"
+                  >
+                    @if (booking()) {
+                      <mat-spinner diameter="20" />
+                    } @else {
+                      Confirmar reserva
+                    }
+                  </button>
+                }
+              </div>
+            }
+          }
+        </section>
+      </div>
+    } @else {
+      <app-empty-state
+        title="Servicio no encontrado"
+        subtitle="Vuelve al catálogo y elige otro servicio."
+      />
+    }
+  </app-loading>
+</div>

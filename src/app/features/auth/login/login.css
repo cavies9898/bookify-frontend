@@ -1,0 +1,1408 @@
+/* =========================================================
+   VARIABLES DEL LOGIN
+   ========================================================= */
+
+:root {
+  /*
+   * Altura aproximada de tu navbar/header.
+   * Si tu header mide 48px, 56px, etc., cambia este valor.
+   */
+  --bk-header-height: 40px;
+}
+
+
+/* =========================================================
+   LOGIN PAGE
+   ========================================================= */
+
+.login-page {
+  /*
+   * IMPORTANTE:
+   * El navbar ya ocupa espacio arriba.
+   * Por eso NO usamos simplemente 100dvh.
+   */
+  height: calc(100dvh - var(--bk-header-height));
+  min-height: calc(100dvh - var(--bk-header-height));
+
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  padding: 20px 24px;
+
+  background: #f7f8fc;
+
+  /*
+   * Evita que el propio login genere
+   * un scroll vertical innecesario.
+   */
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================= */
+
+.login-container {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    1.05fr
+    0.95fr;
+
+  width: 100%;
+  max-width: 1050px;
+
+  /*
+   * 680px máximo.
+   *
+   * Si la pantalla es más pequeña:
+   * calcula automáticamente el espacio disponible
+   * teniendo en cuenta:
+   *
+   * - navbar
+   * - padding superior
+   * - padding inferior
+   */
+  height: min(
+    680px,
+    calc(
+      100dvh
+      - var(--bk-header-height)
+      - 40px
+    )
+  );
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+
+  border: none;
+
+  border-radius: 28px;
+
+  background: #fff;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   PANEL VISUAL
+   ========================================================= */
+
+.login-visual {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  padding:
+    clamp(30px, 4vh, 48px);
+
+  box-sizing: border-box;
+
+  color: #fff;
+
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(
+        in srgb,
+        var(--bk-primary) 96%,
+        #000
+      ),
+      var(--bk-primary)
+    );
+}
+
+
+.login-visual::before {
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 80% 15%,
+      rgba(255, 255, 255, 0.16),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 20% 90%,
+      rgba(255, 255, 255, 0.08),
+      transparent 32%
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   CONTENIDO DEL PANEL
+   ========================================================= */
+
+.visual-content {
+  position: relative;
+
+  z-index: 2;
+
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.logo {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  font-size: 1.15rem;
+
+  font-weight: 800;
+
+  letter-spacing: -0.02em;
+}
+
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: none;
+
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.16);
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  backdrop-filter: blur(10px);
+}
+
+
+.logo-icon mat-icon {
+  width: 21px;
+  height: 21px;
+
+  font-size: 21px;
+}
+
+
+/* =========================================================
+   TEXTO DEL PANEL
+   ========================================================= */
+
+.visual-copy {
+  margin-top: auto;
+
+  margin-bottom:
+    clamp(20px, 4vh, 42px);
+}
+
+
+.eyebrow {
+  display: inline-block;
+
+  margin-bottom: 14px;
+
+  font-size: 0.68rem;
+
+  font-weight: 800;
+
+  letter-spacing: 0.16em;
+
+  color: rgba(255, 255, 255, 0.68);
+}
+
+
+.visual-copy h1 {
+  max-width: 480px;
+
+  margin: 0 0 14px;
+
+  font-size:
+    clamp(
+      1.9rem,
+      3.2vw,
+      3.15rem
+    );
+
+  line-height: 1.05;
+
+  font-weight: 800;
+
+  letter-spacing: -0.045em;
+}
+
+
+.visual-copy h1 span {
+  display: block;
+
+  color: rgba(255, 255, 255, 0.62);
+}
+
+
+.visual-copy p {
+  max-width: 410px;
+
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.75);
+
+  font-size: 0.9rem;
+
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   CALENDARIO
+   ========================================================= */
+
+.calendar-card {
+  position: relative;
+
+  z-index: 3;
+
+  width: min(100%, 330px);
+
+  padding: 20px;
+
+  box-sizing: border-box;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  color: #202532;
+
+  box-shadow:
+    0 24px 50px rgba(0, 0, 0, 0.16),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+
+  transform: rotate(-2deg);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  animation:
+    calendar-float
+    5s
+    ease-in-out
+    infinite;
+}
+
+
+.calendar-card:hover {
+  transform:
+    rotate(0deg)
+    translateY(-4px);
+
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.18),
+    0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ---------- Header ---------- */
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+}
+
+
+.calendar-header div {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+
+.calendar-header small {
+  font-size: 0.63rem;
+
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+
+  color: #9297a4;
+}
+
+
+.calendar-header strong {
+  font-size: 0.94rem;
+}
+
+
+/* ---------- Check ---------- */
+
+.calendar-check {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: none;
+
+  border-radius: 10px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--bk-primary) 10%,
+      transparent
+    );
+
+  color: var(--bk-primary);
+}
+
+
+.calendar-check mat-icon {
+  width: 18px;
+  height: 18px;
+
+  font-size: 18px;
+}
+
+
+/* ---------- Días ---------- */
+
+.calendar-days,
+.calendar-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(7, 1fr);
+
+  gap: 6px;
+
+  text-align: center;
+}
+
+
+.calendar-days {
+  margin-bottom: 8px;
+}
+
+
+.calendar-days span {
+  font-size: 0.62rem;
+
+  font-weight: 700;
+
+  color: #a2a6b1;
+}
+
+
+.calendar-grid span {
+  height: 29px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 7px;
+
+  font-size: 0.68rem;
+
+  font-weight: 600;
+
+  color: #4f5562;
+}
+
+
+.calendar-grid .active {
+  color: #fff;
+
+  background: var(--bk-primary);
+
+  box-shadow:
+    0 5px 12px
+    color-mix(
+      in srgb,
+      var(--bk-primary) 35%,
+      transparent
+    );
+}
+
+
+/* ---------- Reserva ---------- */
+
+.reservation {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 18px;
+
+  padding-top: 15px;
+
+  border-top: 1px solid #eceef2;
+}
+
+
+.reservation-dot {
+  width: 8px;
+  height: 8px;
+
+  flex: none;
+
+  border-radius: 50%;
+
+  background: #25c77b;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(37, 199, 123, 0.12);
+}
+
+
+.reservation div {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+
+.reservation strong {
+  font-size: 0.72rem;
+}
+
+
+.reservation small {
+  font-size: 0.65rem;
+
+  color: #9297a4;
+}
+
+
+.reservation > mat-icon {
+  width: 18px;
+  height: 18px;
+
+  font-size: 18px;
+
+  color: #a4a8b1;
+}
+
+
+/* =========================================================
+   DECORACIÓN
+   ========================================================= */
+
+.visual-decoration {
+  position: absolute;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+.visual-decoration--one {
+  width: 380px;
+  height: 380px;
+
+  right: -210px;
+  top: -150px;
+}
+
+
+.visual-decoration--two {
+  width: 260px;
+  height: 260px;
+
+  left: -150px;
+  bottom: -130px;
+}
+
+
+/* =========================================================
+   FORMULARIO
+   ========================================================= */
+
+.login-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    clamp(28px, 4vh, 55px)
+    clamp(35px, 5vw, 58px);
+
+  box-sizing: border-box;
+
+  background: #fff;
+}
+
+
+.form-wrapper {
+  width: 100%;
+
+  max-width: 370px;
+}
+
+
+/* =========================================================
+   HEADER DEL FORMULARIO
+   ========================================================= */
+
+.form-header {
+  margin-bottom:
+    clamp(18px, 3vh, 30px);
+}
+
+
+.welcome {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: 0.76rem;
+
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  color: var(--bk-primary);
+}
+
+
+.form-header h2 {
+  margin: 0 0 7px;
+
+  font-size:
+    clamp(
+      1.7rem,
+      2.4vw,
+      2rem
+    );
+
+  line-height: 1.1;
+
+  font-weight: 800;
+
+  letter-spacing: -0.035em;
+
+  color: #1d222d;
+}
+
+
+.form-header p {
+  margin: 0;
+
+  font-size: 0.9rem;
+
+  color: #8a909c;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap:
+    clamp(
+      10px,
+      1.5vh,
+      15px
+    );
+}
+
+
+.full-width {
+  width: 100%;
+}
+
+
+/* =========================================================
+   INPUTS ANGULAR MATERIAL
+   ========================================================= */
+
+mat-form-field {
+  --mdc-outlined-text-field-container-shape: 12px;
+}
+
+
+mat-form-field mat-icon {
+  color: #969ca8;
+}
+
+
+mat-form-field input {
+  font-size: 0.92rem;
+}
+
+
+mat-form-field input::placeholder {
+  color: #b7bbc4;
+}
+
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.form-error {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 9px;
+
+  padding: 11px 13px;
+
+  border: 1px solid #f4d1d1;
+
+  border-radius: 11px;
+
+  background: #fff5f5;
+
+  color: var(--bk-danger);
+
+  font-size: 0.82rem;
+
+  line-height: 1.4;
+
+  animation:
+    scale-in
+    0.2s
+    ease
+    both;
+}
+
+
+.form-error mat-icon {
+  flex: none;
+
+  width: 18px;
+  height: 18px;
+
+  margin-top: 1px;
+
+  font-size: 18px;
+}
+
+
+/* =========================================================
+   OPCIONES
+   ========================================================= */
+
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-top: -2px;
+
+  font-size: 0.76rem;
+}
+
+
+.remember {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  color: #727885;
+
+  cursor: pointer;
+}
+
+
+.remember input {
+  width: 15px;
+  height: 15px;
+
+  margin: 0;
+
+  accent-color: var(--bk-primary);
+
+  cursor: pointer;
+}
+
+
+.form-options a {
+  color: var(--bk-primary);
+
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+
+.form-options a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   BOTÓN
+   ========================================================= */
+
+.login-button {
+  width: 100%;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+
+  margin-top: 4px;
+
+  border-radius: 12px !important;
+
+  font-size: 0.9rem;
+
+  font-weight: 750;
+
+  box-shadow:
+    0 8px 18px
+    color-mix(
+      in srgb,
+      var(--bk-primary) 20%,
+      transparent
+    );
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+
+.login-button span {
+  flex: 1;
+}
+
+
+.login-button mat-icon {
+  width: 19px;
+  height: 19px;
+
+  font-size: 19px;
+
+  transition:
+    transform 0.15s ease;
+}
+
+
+.login-button:not(:disabled):hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 12px 25px
+    color-mix(
+      in srgb,
+      var(--bk-primary) 27%,
+      transparent
+    );
+}
+
+
+.login-button:not(:disabled):hover mat-icon {
+  transform: translateX(3px);
+}
+
+
+.login-button:focus-visible {
+  outline: 2px solid var(--bk-primary);
+
+  outline-offset: 3px;
+}
+
+
+.login-button mat-spinner {
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+.divider {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin:
+    clamp(18px, 2.5vh, 28px)
+    0
+    15px;
+
+  color: #a2a6b0;
+
+  font-size: 0.72rem;
+}
+
+
+.divider::before,
+.divider::after {
+  content: '';
+
+  position: absolute;
+
+  top: 50%;
+
+  width: calc(50% - 18px);
+
+  height: 1px;
+
+  background: #eceef2;
+}
+
+
+.divider::before {
+  left: 0;
+}
+
+
+.divider::after {
+  right: 0;
+}
+
+
+.divider span {
+  position: relative;
+
+  z-index: 1;
+
+  padding: 0 10px;
+
+  background: #fff;
+}
+
+
+/* =========================================================
+   REGISTRO
+   ========================================================= */
+
+.register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  color: #777d89;
+
+  font-size: 0.8rem;
+}
+
+
+.register a {
+  min-width: auto !important;
+
+  padding: 0 5px !important;
+
+  color: var(--bk-primary);
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   TÉRMINOS
+   ========================================================= */
+
+.terms {
+  margin:
+    clamp(16px, 2.5vh, 28px)
+    0
+    0;
+
+  text-align: center;
+
+  font-size: 0.66rem;
+
+  line-height: 1.55;
+
+  color: #a3a7b0;
+}
+
+
+.terms a {
+  color: #777d89;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   LOGO MÓVIL
+   ========================================================= */
+
+.mobile-logo {
+  display: none;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .login-page {
+    height:
+      calc(
+        100dvh
+        - var(--bk-header-height)
+      );
+
+    min-height:
+      calc(
+        100dvh
+        - var(--bk-header-height)
+      );
+
+    padding: 20px;
+
+    overflow: hidden;
+
+    align-items: center;
+  }
+
+
+  .login-container {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    width: 100%;
+
+    max-width: 500px;
+
+    /*
+     * Eliminamos la altura de desktop.
+     */
+    height: auto;
+
+    min-height: 0;
+
+    border-radius: 24px;
+  }
+
+
+  .login-visual {
+    display: none;
+  }
+
+
+  .login-form {
+    min-height: 620px;
+
+    padding: 45px;
+  }
+
+
+  .mobile-logo {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 45px;
+
+    color: #202532;
+  }
+
+
+  .mobile-logo .logo-icon {
+    color: var(--bk-primary);
+
+    background:
+      color-mix(
+        in srgb,
+        var(--bk-primary) 10%,
+        transparent
+      );
+
+    border: none;
+  }
+}
+
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 520px) {
+
+  .login-page {
+    /*
+     * En móvil permitimos que el contenido
+     * pueda crecer si hace falta.
+     */
+    height: auto;
+
+    min-height:
+      calc(
+        100dvh
+        - var(--bk-header-height)
+      );
+
+    padding: 0;
+
+    align-items: flex-start;
+
+    overflow: visible;
+
+    background: #fff;
+  }
+
+
+  .login-container {
+    width: 100%;
+
+    height: auto;
+
+    min-height:
+      calc(
+        100dvh
+        - var(--bk-header-height)
+      );
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+  }
+
+
+  .login-form {
+    min-height:
+      calc(
+        100dvh
+        - var(--bk-header-height)
+      );
+
+    align-items: flex-start;
+
+    padding: 32px 22px;
+  }
+
+
+  .mobile-logo {
+    margin-bottom: 55px;
+  }
+
+
+  .form-header h2 {
+    font-size: 1.8rem;
+  }
+
+
+  .form-options {
+    align-items: flex-start;
+  }
+
+
+  .register {
+    flex-wrap: wrap;
+  }
+}
+
+
+/* =========================================================
+   PANTALLAS DESKTOP CON POCA ALTURA
+   ========================================================= */
+
+@media (min-width: 901px) and (max-height: 700px) {
+
+  .login-page {
+    padding: 12px 16px;
+  }
+
+
+  .login-container {
+    /*
+     * En laptops pequeñas aprovechamos
+     * prácticamente todo el espacio.
+     */
+    height:
+      calc(
+        100dvh
+        - var(--bk-header-height)
+        - 24px
+      );
+
+    border-radius: 22px;
+  }
+
+
+  .login-visual {
+    padding: 25px 32px;
+  }
+
+
+  .visual-copy {
+    margin-bottom: 16px;
+  }
+
+
+  .visual-copy h1 {
+    margin-bottom: 9px;
+
+    font-size: 2rem;
+  }
+
+
+  .visual-copy p {
+    font-size: 0.82rem;
+
+    line-height: 1.4;
+  }
+
+
+  .calendar-card {
+    width: min(100%, 290px);
+
+    padding: 15px;
+  }
+
+
+  .calendar-header {
+    margin-bottom: 11px;
+  }
+
+
+  .calendar-grid span {
+    height: 25px;
+  }
+
+
+  .reservation {
+    margin-top: 11px;
+
+    padding-top: 9px;
+  }
+
+
+  .login-form {
+    padding:
+      20px
+      40px;
+  }
+
+
+  .form-header {
+    margin-bottom: 16px;
+  }
+
+
+  form {
+    gap: 8px;
+  }
+
+
+  .login-button {
+    height: 45px;
+  }
+
+
+  .divider {
+    margin:
+      12px
+      0
+      8px;
+  }
+
+
+  .terms {
+    margin-top: 10px;
+  }
+}
+
+
+/* =========================================================
+   ANIMACIONES
+   ========================================================= */
+
+@keyframes route-auth-enter {
+
+  from {
+    opacity: 0;
+
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+.route-auth-enter {
+  animation:
+    route-auth-enter
+    380ms
+    cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+@keyframes calendar-float {
+
+  0%,
+  100% {
+    transform:
+      rotate(-2deg)
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      rotate(-1deg)
+      translateY(-7px);
+  }
+}
+
+
+@keyframes scale-in {
+
+  from {
+    opacity: 0;
+
+    transform:
+      scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      scale(1);
+  }
+}
+
+
+/* =========================================================
+   ACCESIBILIDAD
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .login-container,
+  .calendar-card,
+  .form-error {
+    animation: none;
+  }
+
+
+  .login-button,
+  .login-button mat-icon,
+  .calendar-card {
+    transition: none;
+  }
+}
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+:host-context(html.dark) .login-page {
+  background: #0e0e14;
+}
+
+:host-context(html.dark) .login-container {
+  background: var(--bk-surface);
+}
+
+:host-context(html.dark) .login-form {
+  background: var(--bk-surface);
+}
+
+:host-context(html.dark) .form-header h2 {
+  color: var(--bk-text);
+}
+
+:host-context(html.dark) .form-header p {
+  color: var(--bk-text-muted);
+}
+
+:host-context(html.dark) .calendar-card {
+  background: rgba(40, 30, 60, 0.96);
+  color: var(--bk-text);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.4);
+}
+
+:host-context(html.dark) .form-error {
+  background: rgba(192, 57, 43, 0.15);
+  border-color: rgba(192, 57, 43, 0.3);
+}
+
+:host-context(html.dark) .remember {
+  color: var(--bk-text-muted);
+}
+
+:host-context(html.dark) .register {
+  color: var(--bk-text-muted);
+}
+
+:host-context(html.dark) .terms {
+  color: var(--bk-text-muted);
+}
+
+:host-context(html.dark) .divider {
+  color: var(--bk-text-muted);
+}
+
+:host-context(html.dark) .divider::before,
+:host-context(html.dark) .divider::after {
+  background: var(--bk-border);
+}
+
+:host-context(html.dark) .divider span {
+  background: var(--bk-surface);
+}
+
+:host-context(html.dark) .mobile-logo {
+  color: var(--bk-text);
+}

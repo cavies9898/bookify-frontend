@@ -1,0 +1,19 @@
+<div class="paginator">
+  <span class="summary">
+    Página {{ pageIndex() + 1 }} de {{ Math.max(totalPages(), 1) }} ·
+    {{ totalElements() }} elementos
+  </span>
+  <div class="actions">
+    <button mat-stroked-button type="button" [disabled]="pageIndex() <= 0" (click)="previous()">
+      Anterior
+    </button>
+    <button
+      mat-stroked-button
+      type="button"
+      [disabled]="pageIndex() >= totalPages() - 1 || totalPages() <= 1"
+      (click)="next()"
+    >
+      Siguiente
+    </button>
+  </div>
+</div>

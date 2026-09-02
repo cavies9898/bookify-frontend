@@ -1,0 +1,43 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.badge-pending {
+  background: var(--bk-bg);
+  color: var(--bk-text-muted);
+}
+
+.badge-confirmed {
+  background: #e7f6ee;
+  color: var(--bk-success);
+}
+
+.badge-cancelled {
+  background: #fdecec;
+  color: var(--bk-danger);
+}
+
+/* ---------- Dark Mode ---------- */
+
+:host-context(html.dark) .badge-confirmed {
+  background: rgba(30, 142, 90, 0.15);
+}
+
+:host-context(html.dark) .badge-cancelled {
+  background: rgba(192, 57, 43, 0.15);
+}

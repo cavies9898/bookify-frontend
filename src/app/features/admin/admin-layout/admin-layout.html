@@ -1,0 +1,31 @@
+<section class="bk-page">
+  <header class="page-header">
+    <h1>Panel de administración</h1>
+    <p class="text-muted">Gestiona los servicios y revisa todas las reservas.</p>
+  </header>
+
+  <nav mat-tab-nav-bar class="admin-tabs" aria-label="Secciones de administración">
+    <a
+      mat-tab-link
+      routerLink="/admin/servicios"
+      routerLinkActive="mdc-tab-indicator--active"
+      #rla1="routerLinkActive"
+      [active]="rla1.isActive"
+    >
+      Servicios
+    </a>
+    <a
+      mat-tab-link
+      routerLink="/admin/reservas"
+      routerLinkActive="mdc-tab-indicator--active"
+      #rla2="routerLinkActive"
+      [active]="rla2.isActive"
+    >
+      Reservas
+    </a>
+  </nav>
+
+  <div class="tab-content">
+    <router-outlet />
+  </div>
+</section>

@@ -1,0 +1,321 @@
+@use '@angular/material' as mat;
+
+// Paleta primaria violeta (marca Bookify)
+$bookify-violet: (
+  0: #000000,
+  10: #20005d,
+  20: #370882,
+  25: #42188f,
+  30: #4d269c,
+  35: #5934a9,
+  40: #6542b6,
+  50: #7e5cd1,
+  60: #9876ee,
+  70: #b296ff,
+  80: #cbbbff,
+  90: #e7daff,
+  95: #f5ecff,
+  98: #fdf7ff,
+  99: #fffbff,
+  100: #ffffff,
+);
+
+// Secundaria gris neutra (soporte sobrio)
+$bookify-slate: (
+  0: #000000,
+  10: #1a1c1f,
+  20: #2f3133,
+  25: #3a3c3f,
+  30: #45474a,
+  35: #515356,
+  40: #5d5f62,
+  50: #75777b,
+  60: #8f9195,
+  70: #aaabb0,
+  80: #c6c7cb,
+  90: #e2e3e7,
+  95: #f1f1f4,
+  98: #fafafb,
+  99: #fdfdfd,
+  100: #ffffff,
+);
+
+// Terciaria teal (solamente matices de estado)
+$bookify-teal: (
+  0: #000000,
+  10: #00201c,
+  20: #003731,
+  30: #005148,
+  40: #006b60,
+  50: #00877a,
+  60: #00a295,
+  70: #34beb0,
+  80: #5cdbcb,
+  90: #7ff7e6,
+  95: #bdffed,
+  98: #e8fff6,
+  99: #f4fff9,
+  100: #ffffff,
+);
+
+html {
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: $bookify-violet,
+        secondary: $bookify-slate,
+        tertiary: $bookify-teal,
+      ),
+      typography: Inter,
+      density: 0,
+    )
+  );
+  color-scheme: light;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, Roboto, 'Helvetica Neue', sans-serif;
+  background: var(--bk-bg);
+  color: var(--bk-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+:root {
+  --bk-bg: #f6f6f8;
+  --bk-surface: #ffffff;
+  --bk-border: #e7e7ec;
+  --bk-text: #191920;
+  --bk-text-muted: #71717a;
+  --bk-primary: #6542b6;
+  --bk-primary-soft: #f0ecf9;
+  --bk-danger: #c0392b;
+  --bk-success: #1e8e5a;
+  --bk-radius: 14px;
+  --bk-radius-lg: 18px;
+  --bk-shadow: 0 1px 2px rgba(16, 24, 40, 0.05), 0 4px 16px rgba(16, 24, 40, 0.05);
+  --bk-shadow-hover: 0 8px 28px rgba(16, 24, 40, 0.1);
+}
+
+html.dark {
+  @include mat.theme(
+    (
+      color: (
+        theme-type: dark,
+        primary: $bookify-violet,
+        secondary: $bookify-slate,
+        tertiary: $bookify-teal,
+      ),
+      typography: Inter,
+      density: 0,
+    )
+  );
+  color-scheme: dark;
+
+  --bk-bg: #121218;
+  --bk-surface: #1e1e2a;
+  --bk-border: #2e2e3e;
+  --bk-text: #e8e8ed;
+  --bk-text-muted: #9a9aab;
+  --bk-primary: #9876ee;
+  --bk-primary-soft: #2a2040;
+  --bk-danger: #e05447;
+  --bk-success: #34c77b;
+  --bk-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.25);
+  --bk-shadow-hover: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- Utilidades ---------- */
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.text-muted {
+  color: var(--bk-text-muted);
+}
+
+.gradient-text {
+  color: var(--bk-primary);
+}
+
+.bk-page {
+  animation: bk-fade-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.bk-card-hover {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.bk-card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--bk-shadow-hover);
+  border-color: rgba(101, 66, 182, 0.28);
+}
+
+/* ---------- Animaciones ---------- */
+
+@keyframes bk-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bk-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bk-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bk-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ---------- Overrides de Material ---------- */
+
+.mat-mdc-card {
+  border-radius: var(--bk-radius) !important;
+  border-color: var(--bk-border);
+  background: var(--bk-surface);
+}
+
+.mat-mdc-unelevated-button,
+.mat-mdc-raised-button,
+.mat-mdc-flat-button,
+.mat-mdc-outlined-button {
+  border-radius: 999px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em;
+}
+
+.mat-mdc-flat-button:not(:disabled),
+.mat-mdc-raised-button:not(:disabled),
+.mat-mdc-unelevated-button:not(:disabled) {
+  box-shadow: none;
+}
+
+.mat-mdc-flat-button:not(:disabled):hover,
+.mat-mdc-raised-button:not(:disabled):hover,
+.mat-mdc-unelevated-button:not(:disabled):hover {
+  box-shadow: var(--bk-shadow);
+}
+
+.mat-mdc-form-field.mat-form-field-appearance-outline .mat-mdc-text-field-wrapper {
+  border-radius: 12px;
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  border-radius: 12px;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  border-radius: var(--bk-radius) !important;
+  background: var(--bk-surface);
+}
+
+.cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.mat-datepicker-content {
+  --mat-datepicker-calendar-container-background-color: var(--bk-surface);
+  --mat-datepicker-calendar-container-text-color: var(--bk-text);
+}
+
+.mat-datepicker-content .mat-calendar {
+  border-radius: var(--bk-radius);
+}
+
+.mat-mdc-tab-link,
+.mat-mdc-tab {
+  border-radius: 999px;
+}
+
+.mdc-tab-indicator {
+  display: none;
+}
+
+/* ---------- Dark mode: cards y bordes ---------- */
+
+html.dark .mat-mdc-card {
+  background: var(--bk-surface);
+  border-color: var(--bk-border);
+  color: var(--bk-text);
+}
+
+html.dark .mat-mdc-dialog-container .mdc-dialog__surface {
+  background: var(--bk-surface);
+  color: var(--bk-text);
+}
+
+html.dark .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+  background: var(--bk-surface);
+}
+
+html.dark .mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background: var(--bk-surface);
+  color: var(--bk-text);
+}
+
+/* ---------- Accesibilidad ---------- */
+
+:focus-visible {
+  outline: 2px solid var(--mat-sys-primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

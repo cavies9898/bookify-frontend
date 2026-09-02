@@ -1,0 +1,178 @@
+<section class="bk-page">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-eyebrow">
+        <mat-icon aria-hidden="true">calendar_month</mat-icon>
+        Reserva en línea
+      </span>
+
+      <h1 class="hero-title">
+        Encuentra tu próximo
+        <span class="gradient-text">servicio</span>
+      </h1>
+
+      <p class="hero-subtitle">Elige un servicio, el día y la hora. Sin llamadas, sin esperas.</p>
+    </div>
+  </section>
+
+  <!-- SEARCH / FILTERS -->
+  <div class="filters-panel">
+    <mat-form-field appearance="outline" class="search-field" subscriptSizing="dynamic">
+      <mat-icon matPrefix aria-hidden="true">search</mat-icon>
+
+      <mat-label>Buscar servicio</mat-label>
+
+      <input
+        matInput
+        type="search"
+        placeholder="Ej. consulta veterinaria"
+        (input)="onSearch($event)"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="sort-field" subscriptSizing="dynamic">
+      <mat-label>Ordenar por</mat-label>
+
+      <mat-select [value]="sort()" (selectionChange)="onSortChange($event.value)">
+        <mat-option value="name,asc"> Nombre (A–Z) </mat-option>
+
+        <mat-option value="name,desc"> Nombre (Z–A) </mat-option>
+
+        <mat-option value="price,asc"> Precio menor </mat-option>
+
+        <mat-option value="price,desc"> Precio mayor </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- CONTENT -->
+  <app-loading [loading]="loading()" label="Cargando servicios…">
+    @if (error()) {
+      <div class="error-box" role="alert">
+        <div class="error-icon">
+          <mat-icon aria-hidden="true">error_outline</mat-icon>
+        </div>
+
+        <p>{{ error() }}</p>
+
+        <button mat-flat-button color="primary" type="button" (click)="retry()">Reintentar</button>
+      </div>
+    } @else if (filteredServices().length === 0) {
+      <app-empty-state
+        title="No hay servicios disponibles"
+        subtitle="Prueba con otra búsqueda o vuelve más tarde."
+      />
+    } @else {
+      <!-- RESULT HEADER -->
+      <div class="results-header">
+        <div>
+          <h2>Servicios disponibles</h2>
+
+          <span>
+            {{ page()?.totalElements ?? filteredServices().length }}
+            servicios encontrados
+          </span>
+        </div>
+      </div>
+
+      <!-- CARDS -->
+      <div class="cards-grid">
+        @for (service of filteredServices(); track service.id; let i = $index) {
+          <mat-card appearance="outlined" class="service-card" [style.--i]="i">
+            <!-- VISUAL -->
+            <div class="card-visual">
+              <div class="visual-gradient"></div>
+
+              <div class="service-icon">
+                <mat-icon aria-hidden="true">design_services</mat-icon>
+              </div>
+
+              <span class="availability-badge">
+                <span class="availability-dot"></span>
+                Disponible
+              </span>
+            </div>
+
+            <!-- CONTENT -->
+            <mat-card-content>
+              <div class="service-heading">
+                <h3 class="service-name">
+                  {{ service.name }}
+                </h3>
+
+                <button
+                  mat-icon-button
+                  class="favorite-button"
+                  type="button"
+                  aria-label="Añadir a favoritos"
+                >
+                  <mat-icon aria-hidden="true"> favorite_border </mat-icon>
+                </button>
+              </div>
+
+              <div class="service-meta">
+                <span>
+                  <mat-icon aria-hidden="true"> schedule </mat-icon>
+
+                  {{ formatted.minutesToLabel(service.durationMinutes) }}
+                </span>
+
+                <span class="meta-separator">·</span>
+
+                <span>
+                  {{ formatted.formatTimeOfDay(service.openingTime) }}
+                  –
+                  {{ formatted.formatTimeOfDay(service.closingTime) }}
+                </span>
+              </div>
+
+              @if (service.description) {
+                <p class="description">
+                  {{ service.description }}
+                </p>
+              }
+
+              <!-- FOOTER -->
+              <div class="card-footer">
+                <div class="price-container">
+                  <span class="price-label"> Desde </span>
+
+                  <span class="price">
+                    {{ service.price | currency: environment.currency : 'symbol' : '1.2-2' : 'es-ES' }}
+                  </span>
+                </div>
+
+                <a
+                  mat-flat-button
+                  color="primary"
+                  class="reserve-button"
+                  [routerLink]="['/services', service.id]"
+                >
+                  Reservar
+
+                  <mat-icon aria-hidden="true"> arrow_forward </mat-icon>
+                </a>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        }
+      </div>
+    }
+  </app-loading>
+
+  <!-- PAGINATION -->
+  @if (page() && !loading() && !error() && filteredServices().length > 0) {
+    <div class="pagination-container">
+      <div class="pagination-info">Página {{ page()!.number + 1 }} de {{ page()!.totalPages }}</div>
+
+      <app-paginator
+        [pageIndex]="page()!.number"
+        [totalElements]="page()!.totalElements"
+        [totalPages]="page()!.totalPages"
+        [size]="page()!.size"
+        (pageChange)="onPageChange($event)"
+      />
+    </div>
+  }
+</section>

@@ -1,0 +1,96 @@
+<div class="bk-page">
+  <div class="toolbar">
+    <div>
+      <h2>Gestión de servicios</h2>
+      <p class="text-muted">Crea, edita y elimina los servicios del catálogo.</p>
+    </div>
+    <button mat-flat-button color="primary" type="button" (click)="newService()">
+      <mat-icon aria-hidden="true">add</mat-icon>
+      Nuevo servicio
+    </button>
+  </div>
+
+  <app-loading [loading]="loading()" label="Cargando servicios…">
+    @if (error()) {
+      <div class="error-box" role="alert">
+        <p>{{ error() }}</p>
+        <button mat-flat-button type="button" (click)="load()">Reintentar</button>
+      </div>
+    } @else if ((page()?.content?.length ?? 0) === 0) {
+      <app-empty-state
+        title="No hay servicios"
+        subtitle="Crea el primer servicio con el botón «Nuevo servicio»."
+      />
+    } @else {
+      <mat-card appearance="outlined" class="table-card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Duración</th>
+                <th>Horario</th>
+                <th>Capacidad</th>
+                <th class="align-right">Precio</th>
+                <th>Estado</th>
+                <th class="align-right">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (service of page()!.content; track service.id) {
+                <tr>
+                  <td>
+                    <span class="service-name">{{ service.name }}</span>
+                    @if (service.description) {
+                      <span class="service-desc">{{ service.description }}</span>
+                    }
+                  </td>
+                  <td>{{ formatted.minutesToLabel(service.durationMinutes) }}</td>
+                  <td>
+                    {{ formatted.formatTimeOfDay(service.openingTime) }}–{{
+                      formatted.formatTimeOfDay(service.closingTime)
+                    }}
+                  </td>
+                  <td>{{ service.capacity }}</td>
+                  <td class="align-right">
+                    <span class="cell-price">
+                      {{ service.price | currency: environment.currency : 'symbol' : '1.2-2' : 'es-ES' }}
+                    </span>
+                  </td>
+                  <td>
+                    @if (service.active) {
+                      <span class="active-badge">Activo</span>
+                    } @else {
+                      <span class="inactive-badge">Inactivo</span>
+                    }
+                  </td>
+                  <td class="align-right actions">
+                    <button mat-stroked-button type="button" (click)="editService(service)">
+                      Editar
+                    </button>
+                    <button
+                      mat-stroked-button
+                      color="warn"
+                      type="button"
+                      (click)="deleteService(service)"
+                    >
+                      Eliminar
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </mat-card>
+
+      <app-paginator
+        [pageIndex]="page()!.number"
+        [totalElements]="page()!.totalElements"
+        [totalPages]="page()!.totalPages"
+        [size]="page()!.size"
+        (pageChange)="onPageChange($event)"
+      />
+    }
+  </app-loading>
+</div>
