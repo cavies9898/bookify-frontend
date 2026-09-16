@@ -2,6 +2,22 @@
 
 SPA en **Angular 22** (standalone, zoneless con signals) que consume el backend REST de reservas **Bookify** (Spring Boot). Sigue las mejores prácticas actuales de Angular: componentes *standalone*, `provideZonelessChangeDetection()`, *control flow* moderno (`@if` / `@for` / `@switch`), formularios reactivos tipados, *lazy loading* por feature y guardas funcionales.
 
+## Stack
+
+| Categoría | Tecnología |
+|-----------|------------|
+| Framework | Angular 22 |
+| Lenguaje | TypeScript 6 |
+| UI | Angular Material 22 + CDK |
+| Mapas | Leaflet 1.9 |
+| RxJS | 7.8 |
+| State | Signals (`signal`, `computed`, `effect`) |
+| Testing | Vitest 4 |
+| Linting | ESLint 10 + angular-eslint |
+| Formato | Prettier 3 |
+| Build | Angular CLI 22 + esbuild |
+| Package manager | npm 11 |
+
 ## Requisitos
 
 - **Node.js ≥ 24.15** (el CLI de Angular 22 lo exige; con nvm: `nvm install 24`).
