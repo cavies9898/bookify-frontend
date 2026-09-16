@@ -20,7 +20,6 @@ import { Page } from '../../../shared/models/page';
 import { ServiceResponse } from '../../../shared/models/service';
 import { EmptyState } from '../../../shared/components/empty-state/empty-state';
 import { Loading } from '../../../shared/components/loading/loading';
-import { Paginator } from '../../../shared/components/paginator/paginator';
 import { formatTimeOfDay, minutesToLabel } from '../../../shared/utils/dates';
 import { ServicesService } from '../services.service';
 
@@ -39,7 +38,6 @@ type SortOption = 'name,asc' | 'name,desc' | 'price,asc' | 'price,desc';
     MatSelectModule,
     EmptyState,
     Loading,
-    Paginator,
   ],
   templateUrl: './catalog.html',
   styleUrl: './catalog.css',
@@ -99,11 +97,6 @@ export class Catalog implements OnInit {
 
   protected onSearch(event: Event): void {
     this.search.set((event.target as HTMLInputElement).value);
-  }
-
-  protected onPageChange(index: number): void {
-    this.page.update((current) => (current ? { ...current, number: index } : current));
-    void this.load();
   }
 
   protected retry(): void {

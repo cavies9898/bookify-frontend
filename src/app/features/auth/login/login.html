@@ -153,10 +153,21 @@
             <input
               matInput
               formControlName="password"
-              type="password"
+              [type]="hidePassword() ? 'password' : 'text'"
               autocomplete="current-password"
               placeholder="••••••••"
             />
+
+            <button
+              mat-icon-button
+              matSuffix
+              type="button"
+              class="password-toggle"
+              (click)="hidePassword.set(!hidePassword())"
+              [attr.aria-label]="hidePassword() ? 'Mostrar contraseña' : 'Ocultar contraseña'"
+            >
+              <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
 
             @if (form.controls.password.touched && form.controls.password.invalid) {
               <mat-error>

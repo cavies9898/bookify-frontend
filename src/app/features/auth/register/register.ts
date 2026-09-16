@@ -52,6 +52,7 @@ export class Register {
 
   protected readonly submitting = signal(false);
   protected readonly formError = signal('');
+  protected readonly hidePassword = signal(true);
 
   protected async onSubmit(): Promise<void> {
     this.form.markAllAsTouched();

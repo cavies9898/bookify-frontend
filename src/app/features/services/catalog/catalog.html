@@ -139,7 +139,7 @@
                   <span class="price-label"> Desde </span>
 
                   <span class="price">
-                    {{ service.price | currency: environment.currency : 'symbol' : '1.2-2' : 'es-ES' }}
+                    {{ service.price | currency: environment.currency : 'symbol' : '1.2-2' : 'es-MX' }}
                   </span>
                 </div>
 
@@ -163,16 +163,9 @@
 
   <!-- PAGINATION -->
   @if (page() && !loading() && !error() && filteredServices().length > 0) {
-    <div class="pagination-container">
-      <div class="pagination-info">Página {{ page()!.number + 1 }} de {{ page()!.totalPages }}</div>
-
-      <app-paginator
-        [pageIndex]="page()!.number"
-        [totalElements]="page()!.totalElements"
-        [totalPages]="page()!.totalPages"
-        [size]="page()!.size"
-        (pageChange)="onPageChange($event)"
-      />
+    <div class="pagination-info">
+      Página {{ page()!.number + 1 }} de {{ page()!.totalPages }} ·
+      {{ page()!.totalElements }} elementos
     </div>
   }
 </section>

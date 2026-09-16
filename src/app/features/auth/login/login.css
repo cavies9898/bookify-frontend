@@ -781,6 +781,26 @@ mat-form-field input::placeholder {
 
 
 /* =========================================================
+   PASSWORD TOGGLE
+   ========================================================= */
+
+.password-toggle {
+  cursor: pointer;
+  border: none !important;
+  background: transparent !important;
+}
+
+.password-toggle mat-icon {
+  color: #969ca8;
+  transition: color 0.15s ease;
+}
+
+.password-toggle:hover mat-icon {
+  color: var(--bk-primary);
+}
+
+
+/* =========================================================
    BOTÓN
    ========================================================= */
 
@@ -1368,7 +1388,7 @@ mat-form-field input::placeholder {
 }
 
 :host-context(html.dark) .calendar-card {
-  background: rgba(40, 30, 60, 0.96);
+  background: rgba(13, 25, 42, 0.96);
   color: var(--bk-text);
   box-shadow: 0 24px 50px rgba(0, 0, 0, 0.4);
 }
@@ -1405,4 +1425,12 @@ mat-form-field input::placeholder {
 
 :host-context(html.dark) .mobile-logo {
   color: var(--bk-text);
+}
+
+:host-context(html.dark) .password-toggle mat-icon {
+  color: var(--bk-text-muted);
+}
+
+:host-context(html.dark) .password-toggle:hover mat-icon {
+  color: var(--bk-primary);
 }

@@ -32,6 +32,13 @@
       <mat-datepicker-toggle matIconSuffix [for]="toPicker"></mat-datepicker-toggle>
       <mat-datepicker #toPicker></mat-datepicker>
     </mat-form-field>
+
+    @if (hasActiveFilters()) {
+      <button mat-stroked-button type="button" class="clear-btn" (click)="clearFilters()">
+        <mat-icon aria-hidden="true">filter_alt_off</mat-icon>
+        Limpiar filtros
+      </button>
+    }
   </div>
 </mat-card>
 
@@ -53,6 +60,7 @@
           <thead>
             <tr>
               <th>Servicio</th>
+              <th>Ubicación</th>
               @if (showClient()) {
                 <th>Cliente</th>
               }
@@ -69,6 +77,13 @@
                 <td>
                   <span class="service-name">{{ booking.service.name }}</span>
                 </td>
+                <td>
+                  @if (booking.service.location) {
+                    <span class="service-location">{{ booking.service.location }}</span>
+                  } @else {
+                    <span class="text-muted">—</span>
+                  }
+                </td>
                 @if (showClient()) {
                   <td>
                     <span class="client-name">{{ booking.userName }}</span>
@@ -80,7 +95,7 @@
                 <td><app-status-badge [status]="booking.status" /></td>
                 <td class="align-right">
                   <span class="cell-price">
-                    {{ booking.service.price | currency: environment.currency : 'symbol' : '1.2-2' : 'es-ES' }}
+                    {{ booking.service.price | currency: environment.currency : 'symbol' : '1.2-2' : 'es-MX' }}
                   </span>
                 </td>
                 <td class="align-right">

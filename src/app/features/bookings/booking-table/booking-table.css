@@ -23,6 +23,16 @@
   width: 170px;
 }
 
+.clear-btn {
+  height: 56px;
+  border-color: var(--bk-danger);
+  color: var(--bk-danger);
+}
+
+.clear-btn mat-icon {
+  margin-right: 4px;
+}
+
 .table-card {
   overflow: hidden;
   border: 1px solid var(--bk-border) !important;
@@ -68,6 +78,11 @@ tbody tr:last-child td {
 
 .service-name {
   font-weight: 600;
+}
+
+.service-location {
+  font-size: 0.85rem;
+  color: var(--bk-text-muted);
 }
 
 .cell-price {

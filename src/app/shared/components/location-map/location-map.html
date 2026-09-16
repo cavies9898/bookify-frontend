@@ -1,0 +1,9 @@
+<div class="map-wrapper">
+  <div #mapContainer class="map-container"></div>
+  @if (latitude() !== undefined && longitude() !== undefined) {
+    <div class="map-coordinates">
+      <mat-icon aria-hidden="true">location_on</mat-icon>
+      <span>{{ latitude()!.toFixed(6) }}, {{ longitude()!.toFixed(6) }}</span>
+    </div>
+  }
+</div>

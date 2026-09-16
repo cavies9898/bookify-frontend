@@ -10,6 +10,9 @@ export interface BookingServiceSummary {
   id: number;
   name: string;
   price: number;
+  location?: string;
+  latitude?: number;
+  longitude?: number;
 }
 
 export interface BookingResponse {

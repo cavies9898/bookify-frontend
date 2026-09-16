@@ -15,7 +15,7 @@
             <p class="info-eyebrow">Servicio</p>
             <h1 class="info-title">{{ service.name }}</h1>
             <p class="info-price">
-              {{ service.price | currency: environment.currency : 'symbol' : '1.2-2' : 'es-ES' }}
+              {{ service.price | currency: environment.currency : 'symbol' : '1.2-2' : 'es-MX' }}
               <span class="info-price-note">/ reserva</span>
             </p>
           </div>
@@ -107,7 +107,7 @@
                     {{ formatted.formatSlotTime(slot.endAt) }}
                   </dd>
                   <dt>Precio</dt>
-                  <dd>{{ service.price | currency: environment.currency : 'symbol' : '1.2-2' : 'es-ES' }}</dd>
+                  <dd>{{ service.price | currency: environment.currency : 'symbol' : '1.2-2' : 'es-MX' }}</dd>
                 </dl>
 
                 @if (bookingError()) {
@@ -143,6 +143,19 @@
           }
         </section>
       </div>
+
+      @if (service.location || (service.latitude !== null && service.longitude !== null)) {
+        <mat-card appearance="outlined" class="location-card">
+          <div class="location-header">
+            <mat-icon aria-hidden="true">location_on</mat-icon>
+            <span>Ubicación del servicio</span>
+          </div>
+          @if (service.location) {
+            <p class="location-text">{{ service.location }}</p>
+          }
+          <app-location-map />
+        </mat-card>
+      }
     } @else {
       <app-empty-state
         title="Servicio no encontrado"

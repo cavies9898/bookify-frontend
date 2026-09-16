@@ -9,7 +9,7 @@ import { errorInterceptor } from './core/http/error.interceptor';
 
 export const appConfig = {
   providers: [
-    { provide: LOCALE_ID, useValue: 'es-ES' },
+    { provide: LOCALE_ID, useValue: 'es-MX' },
 
     provideRouter(routes, withComponentInputBinding(), withViewTransitions()),
 
@@ -19,6 +19,6 @@ export const appConfig = {
 
     provideNativeDateAdapter(),
 
-    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
+    { provide: MAT_DATE_LOCALE, useValue: 'es-MX' },
   ],
 };

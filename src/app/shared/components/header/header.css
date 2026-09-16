@@ -9,7 +9,7 @@
   border-bottom: 1px solid rgba(229, 231, 240, 0.7);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.6) inset,
-    0 12px 40px rgba(101, 66, 182, 0.05);
+    0 12px 40px rgba(25, 118, 210, 0.05);
 }
 
 html.dark :host {
@@ -48,10 +48,10 @@ html.dark :host {
   height: 34px;
   border-radius: 11px;
   color: #fff;
-  background: linear-gradient(145deg, var(--bk-primary), #4d2fa0);
+  background: linear-gradient(145deg, var(--bk-primary), #1565C0);
   box-shadow:
     0 6px 16px color-mix(in srgb, var(--bk-primary) 34%, transparent),
-    0 1px 2px rgba(24, 20, 60, 0.2) inset;
+    0 1px 2px rgba(13, 33, 55, 0.2) inset;
 }
 
 .brand-logo svg {
@@ -117,7 +117,7 @@ html.dark :host {
   color: #fff;
   font-size: 0.85rem;
   font-weight: 700;
-  background: linear-gradient(145deg, var(--bk-primary), #4d2fa0);
+  background: linear-gradient(145deg, var(--bk-primary), #1565C0);
   box-shadow:
     0 0 0 2px #fff,
     0 0 0 4px color-mix(in srgb, var(--bk-primary) 22%, transparent),
@@ -155,7 +155,7 @@ html.dark :host {
 :host ::ng-deep .mat-mdc-button.auth-active {
   color: #fff !important;
   border-radius: 12px;
-  background: linear-gradient(145deg, var(--bk-primary), #4d2fa0);
+  background: linear-gradient(145deg, var(--bk-primary), #1565C0);
   box-shadow: 0 8px 18px color-mix(in srgb, var(--bk-primary) 26%, transparent);
   transition:
     transform 0.15s ease,

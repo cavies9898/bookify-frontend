@@ -1,22 +1,22 @@
 @use '@angular/material' as mat;
 
-// Paleta primaria violeta (marca Bookify)
-$bookify-violet: (
+// Paleta primaria azul (marca Bookify)
+$bookify-blue: (
   0: #000000,
-  10: #20005d,
-  20: #370882,
-  25: #42188f,
-  30: #4d269c,
-  35: #5934a9,
-  40: #6542b6,
-  50: #7e5cd1,
-  60: #9876ee,
-  70: #b296ff,
-  80: #cbbbff,
-  90: #e7daff,
-  95: #f5ecff,
-  98: #fdf7ff,
-  99: #fffbff,
+  10: #002171,
+  20: #003c98,
+  25: #004ba8,
+  30: #0d5ab5,
+  35: #1568c2,
+  40: #1976D2,
+  50: #42a0f5,
+  60: #64b5f6,
+  70: #90caf9,
+  80: #bbdefb,
+  90: #e3f2fd,
+  95: #f0f7ff,
+  98: #f8fbff,
+  99: #fcfdff,
   100: #ffffff,
 );
 
@@ -63,7 +63,7 @@ html {
     (
       color: (
         theme-type: light,
-        primary: $bookify-violet,
+        primary: $bookify-blue,
         secondary: $bookify-slate,
         tertiary: $bookify-teal,
       ),
@@ -93,8 +93,8 @@ body {
   --bk-border: #e7e7ec;
   --bk-text: #191920;
   --bk-text-muted: #71717a;
-  --bk-primary: #6542b6;
-  --bk-primary-soft: #f0ecf9;
+  --bk-primary: #1976D2;
+  --bk-primary-soft: #e3f2fd;
   --bk-danger: #c0392b;
   --bk-success: #1e8e5a;
   --bk-radius: 14px;
@@ -108,7 +108,7 @@ html.dark {
     (
       color: (
         theme-type: dark,
-        primary: $bookify-violet,
+        primary: $bookify-blue,
         secondary: $bookify-slate,
         tertiary: $bookify-teal,
       ),
@@ -123,8 +123,8 @@ html.dark {
   --bk-border: #2e2e3e;
   --bk-text: #e8e8ed;
   --bk-text-muted: #9a9aab;
-  --bk-primary: #9876ee;
-  --bk-primary-soft: #2a2040;
+  --bk-primary: #64b5f6;
+  --bk-primary-soft: #0d2137;
   --bk-danger: #e05447;
   --bk-success: #34c77b;
   --bk-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.25);
@@ -169,7 +169,7 @@ html.dark {
 .bk-card-hover:hover {
   transform: translateY(-3px);
   box-shadow: var(--bk-shadow-hover);
-  border-color: rgba(101, 66, 182, 0.28);
+  border-color: rgba(25, 118, 210, 0.28);
 }
 
 /* ---------- Animaciones ---------- */
@@ -258,6 +258,10 @@ html.dark {
   background: var(--bk-surface);
 }
 
+.mat-mdc-dialog-container {
+  max-width: 900px !important;
+}
+
 .cdk-overlay-dark-backdrop {
   background: rgba(0, 0, 0, 0.4);
 }
@@ -300,6 +304,25 @@ html.dark .mat-mdc-form-field .mat-mdc-text-field-wrapper {
 html.dark .mat-mdc-snack-bar-container .mdc-snackbar__surface {
   background: var(--bk-surface);
   color: var(--bk-text);
+}
+
+/* ---------- Select dropdown ---------- */
+
+.mat-mdc-select-panel {
+  background: var(--bk-surface) !important;
+  border: 1px solid var(--bk-border);
+  border-radius: var(--bk-radius) !important;
+  box-shadow: var(--bk-shadow-hover);
+}
+
+.mat-mdc-select-panel .mat-mdc-option {
+  border-radius: 8px;
+  margin: 2px 6px;
+}
+
+html.dark .mat-mdc-select-panel {
+  background: var(--bk-surface) !important;
+  border-color: var(--bk-border);
 }
 
 /* ---------- Accesibilidad ---------- */

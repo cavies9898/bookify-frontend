@@ -7,6 +7,9 @@ export interface ServiceResponse {
   price: number;
   openingTime: string;
   closingTime: string;
+  location?: string;
+  latitude?: number;
+  longitude?: number;
   active: boolean;
   createdAt: string;
 }
@@ -19,6 +22,9 @@ export interface ServiceRequest {
   price: number;
   openingTime: string;
   closingTime: string;
+  location?: string;
+  latitude?: number;
+  longitude?: number;
 }
 
 export interface TimeSlot {

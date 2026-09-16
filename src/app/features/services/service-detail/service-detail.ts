@@ -1,6 +1,6 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { HttpContext } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, effect, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, input, signal, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -15,6 +15,7 @@ import { SessionStore } from '../../../core/auth/session.store';
 import { SUPPRESS_ERROR_TOAST } from '../../../core/http/error.interceptor';
 import { EmptyState } from '../../../shared/components/empty-state/empty-state';
 import { Loading } from '../../../shared/components/loading/loading';
+import { LocationMap } from '../../../shared/components/location-map/location-map';
 import { AvailabilityResponse, ServiceResponse, TimeSlot } from '../../../shared/models/service';
 import {
   formatSlotTime,
@@ -41,6 +42,7 @@ import { ServicesService } from '../services.service';
     MatProgressSpinnerModule,
     EmptyState,
     Loading,
+    LocationMap,
   ],
   templateUrl: './service-detail.html',
   styleUrl: './service-detail.css',
@@ -54,6 +56,8 @@ export class ServiceDetail {
   private readonly bookingsService = inject(BookingsService);
   private readonly session = inject(SessionStore);
   private readonly router = inject(Router);
+
+  @ViewChild(LocationMap) protected readonly map!: LocationMap;
 
   protected readonly service = signal<ServiceResponse | null>(null);
   protected readonly loading = signal(true);
@@ -88,6 +92,9 @@ export class ServiceDetail {
     try {
       const service = await this.servicesService.getById(id);
       this.service.set(service);
+      if (service.latitude != null && service.longitude != null) {
+        setTimeout(() => this.map?.setCoordinates(service.latitude!, service.longitude!), 200);
+      }
     } catch {
       this.error.set('No se pudo cargar el servicio solicitado.');
     } finally {

@@ -1,5 +1,5 @@
 import { HttpContext } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, ViewChild } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -26,6 +26,7 @@ import { toApiRequestError } from '../../../shared/utils/errors';
 import { SUPPRESS_ERROR_TOAST } from '../../../core/http/error.interceptor';
 import { ServicesService } from '../../services/services.service';
 import { environment } from '../../../../environments/environment';
+import { LocationMap } from '../../../shared/components/location-map/location-map';
 
 export interface ServiceFormData {
   service: ServiceResponse | null;
@@ -39,6 +40,9 @@ interface ServiceFormModel {
   price: FormControl<number>;
   openingTime: FormControl<string>;
   closingTime: FormControl<string>;
+  location: FormControl<string>;
+  latitude: FormControl<number | null>;
+  longitude: FormControl<number | null>;
 }
 
 @Component({
@@ -53,6 +57,7 @@ interface ServiceFormModel {
     MatFormFieldModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    LocationMap,
   ],
   templateUrl: './service-form.html',
   styleUrl: './service-form.css',
@@ -69,15 +74,20 @@ export class ServiceForm {
   protected readonly submitting = signal(false);
   protected readonly formError = signal('');
 
+  @ViewChild(LocationMap) protected readonly map!: LocationMap;
+
   protected readonly form: FormGroup<ServiceFormModel> = this.fb.group(
     {
       name: ['', [Validators.required, Validators.maxLength(120)]],
-      description: ['', [Validators.maxLength(500)]],
+      description: ['', [Validators.maxLength(100)]],
       durationMinutes: [60, [Validators.required, Validators.min(15)]],
       capacity: [1, [Validators.required, Validators.min(1)]],
       price: [0, [Validators.required, Validators.min(0)]],
       openingTime: ['09:00', [Validators.required]],
       closingTime: ['18:00', [Validators.required]],
+      location: [''],
+      latitude: [null as number | null],
+      longitude: [null as number | null],
     },
     { validators: timeRangeValidator('openingTime', 'closingTime') },
   );
@@ -93,7 +103,13 @@ export class ServiceForm {
         price: service.price,
         openingTime: service.openingTime.slice(0, 5),
         closingTime: service.closingTime.slice(0, 5),
+        location: service.location ?? '',
+        latitude: service.latitude ?? null,
+        longitude: service.longitude ?? null,
       });
+      if (service.latitude != null && service.longitude != null) {
+        setTimeout(() => this.map?.setCoordinates(service.latitude!, service.longitude!));
+      }
     }
   }
 
@@ -114,6 +130,9 @@ export class ServiceForm {
       price: raw.price,
       openingTime: `${raw.openingTime}:00`,
       closingTime: `${raw.closingTime}:00`,
+      location: raw.location?.trim() || undefined,
+      latitude: raw.latitude ?? undefined,
+      longitude: raw.longitude ?? undefined,
     };
     const context = new HttpContext().set(SUPPRESS_ERROR_TOAST, true);
 
@@ -164,5 +183,12 @@ export class ServiceForm {
       return 'El precio no puede ser negativo.';
     }
     return '';
+  }
+
+  protected onLocationSelected(coords: { latitude: number; longitude: number }): void {
+    this.form.patchValue({
+      latitude: coords.latitude,
+      longitude: coords.longitude,
+    });
   }
 }

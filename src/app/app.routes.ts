@@ -21,6 +21,13 @@ export const routes: Routes = [
     loadChildren: () => import('./features/auth/auth.routes').then((m) => m.registerRoutes),
   },
   {
+    path: 'forgot-password',
+    data: { animation: 'login' },
+    canActivate: [guestGuard],
+    loadChildren: () =>
+      import('./features/auth/auth.routes').then((m) => m.forgotPasswordRoutes),
+  },
+  {
     path: 'mis-reservas',
     data: { animation: 'bookings' },
     canActivate: [authGuard],

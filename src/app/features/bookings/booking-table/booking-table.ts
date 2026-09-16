@@ -1,10 +1,11 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, input, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, OnInit, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -36,6 +37,7 @@ const STATUS_OPTIONS: { value: BookingStatus | ''; label: string }[] = [
     MatCardModule,
     MatDatepickerModule,
     MatFormFieldModule,
+    MatIconModule,
     MatInputModule,
     MatSelectModule,
     EmptyState,
@@ -63,6 +65,10 @@ export class BookingTable implements OnInit {
   protected readonly status = signal<BookingStatus | ''>('');
   protected readonly from = signal<Date | null>(null);
   protected readonly to = signal<Date | null>(null);
+
+  protected readonly hasActiveFilters = computed(() => {
+    return this.status() !== '' || this.from() !== null || this.to() !== null;
+  });
 
   ngOnInit(): void {
     void this.load();
@@ -110,6 +116,13 @@ export class BookingTable implements OnInit {
   protected onPageChange(index: number): void {
     this.page.update((current) => (current ? { ...current, number: index } : current));
     void this.load();
+  }
+
+  protected clearFilters(): void {
+    this.status.set('');
+    this.from.set(null);
+    this.to.set(null);
+    this.resetAndLoad();
   }
 
   protected async cancelBooking(booking: BookingResponse): Promise<void> {

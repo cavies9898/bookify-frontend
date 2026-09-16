@@ -73,7 +73,8 @@ export class ServicesAdmin implements OnInit {
   protected newService(): void {
     const ref = this.dialog.open(ServiceForm, {
       data: { service: null },
-      width: '560px',
+      width: '90vw',
+      maxWidth: '900px',
     });
     ref.afterClosed().subscribe((saved) => {
       if (saved) {
@@ -86,7 +87,8 @@ export class ServicesAdmin implements OnInit {
   protected editService(service: ServiceResponse): void {
     const ref = this.dialog.open(ServiceForm, {
       data: { service },
-      width: '560px',
+      width: '90vw',
+      maxWidth: '900px',
     });
     ref.afterClosed().subscribe((saved) => {
       if (saved) {

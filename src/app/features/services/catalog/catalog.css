@@ -31,19 +31,19 @@
   background:
     radial-gradient(
       circle at 15% 40%,
-      rgba(255, 225, 202, 0.72),
+      rgba(227, 242, 253, 0.72),
       transparent 38%
     ),
     radial-gradient(
       circle at 88% 20%,
-      rgba(217, 204, 255, 0.75),
+      rgba(187, 222, 251, 0.75),
       transparent 42%
     ),
     linear-gradient(
       120deg,
-      #fff5ed 0%,
-      #faf7ff 48%,
-      #eee9ff 100%
+      #f0f7ff 0%,
+      #e3f2fd 48%,
+      #bbdefb 100%
     );
 
   box-sizing: border-box;
@@ -116,7 +116,7 @@
   text-transform: uppercase;
 
   box-shadow:
-    0 4px 12px rgba(80, 55, 120, 0.06);
+    0 4px 12px rgba(25, 118, 210, 0.06);
 }
 
 .hero-eyebrow mat-icon {
@@ -146,9 +146,9 @@
 .gradient-text {
   background: linear-gradient(
     100deg,
-    #6540b7 0%,
-    #8a58d4 45%,
-    #7141b8 100%
+    #1565C0 0%,
+    #42a0f5 45%,
+    #1976D2 100%
   );
 
   -webkit-background-clip: text;
@@ -193,8 +193,8 @@
   border-radius: 18px;
 
   box-shadow:
-    0 18px 45px rgba(40, 28, 70, 0.10),
-    0 3px 12px rgba(40, 28, 70, 0.06);
+    0 18px 45px rgba(13, 33, 55, 0.10),
+    0 3px 12px rgba(13, 33, 55, 0.06);
 
   backdrop-filter: blur(18px);
 
@@ -256,7 +256,7 @@
   display: grid;
 
   grid-template-columns:
-    repeat(4, minmax(0, 1fr));
+    repeat(3, minmax(0, 1fr));
 
   gap: 18px;
 
@@ -280,13 +280,13 @@
 
   padding: 0 !important;
 
-  border: 1px solid rgba(37, 29, 53, 0.08) !important;
+  border: 1px solid rgba(13, 33, 55, 0.08) !important;
   border-radius: 16px !important;
 
   background: #fff !important;
 
   box-shadow:
-    0 5px 18px rgba(38, 28, 56, 0.055) !important;
+    0 5px 18px rgba(13, 33, 55, 0.055) !important;
 
   animation:
     bk-fade-up 0.45s cubic-bezier(0.16, 1, 0.3, 1)
@@ -305,10 +305,10 @@
   transform: translateY(-5px);
 
   border-color:
-    rgba(105, 67, 180, 0.16) !important;
+    rgba(25, 118, 210, 0.16) !important;
 
   box-shadow:
-    0 18px 38px rgba(50, 35, 75, 0.12) !important;
+    0 18px 38px rgba(13, 33, 55, 0.12) !important;
 }
 
 
@@ -326,9 +326,9 @@
   background:
     linear-gradient(
       135deg,
-      #ded4f6,
-      #f1e9e5 52%,
-      #eadff8
+      #bbdefb,
+      #e3f2fd 52%,
+      #90caf9
     );
 }
 
@@ -345,8 +345,8 @@
     ),
     linear-gradient(
       120deg,
-      rgba(117, 78, 178, 0.22),
-      rgba(255, 206, 176, 0.18)
+      rgba(25, 118, 210, 0.22),
+      rgba(144, 202, 249, 0.18)
     );
 }
 
@@ -373,10 +373,10 @@
   background: rgba(255, 255, 255, 0.78);
   border: 1px solid rgba(255, 255, 255, 0.95);
 
-  color: #6845aa;
+  color: #1565C0;
 
   box-shadow:
-    0 4px 10px rgba(40, 25, 65, 0.08);
+    0 4px 10px rgba(13, 33, 55, 0.08);
 
   backdrop-filter: blur(8px);
 }
@@ -594,7 +594,7 @@
   font-weight: 700 !important;
 
   box-shadow:
-    0 5px 12px rgba(104, 65, 175, 0.2);
+    0 5px 12px rgba(25, 118, 210, 0.2);
 }
 
 .reserve-button mat-icon {
@@ -628,9 +628,19 @@
 }
 
 .pagination-info {
+  margin-top: 30px;
+  padding: 12px 18px;
+
+  border: 1px solid var(--bk-border);
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.8);
+
   color: var(--bk-text-muted);
 
-  font-size: 0.78rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-align: center;
 }
 
 
@@ -677,7 +687,7 @@
 
   .cards-grid {
     grid-template-columns:
-      repeat(3, minmax(0, 1fr));
+      repeat(2, minmax(0, 1fr));
   }
 
 }
@@ -777,14 +787,14 @@
 
 :host-context(html.dark) .hero {
   background:
-    radial-gradient(circle at 15% 40%, rgba(101, 66, 182, 0.25), transparent 38%),
-    radial-gradient(circle at 88% 20%, rgba(80, 50, 140, 0.3), transparent 42%),
-    linear-gradient(120deg, #1a1525 0%, #18142a 48%, #15122e 100%);
+    radial-gradient(circle at 15% 40%, rgba(25, 118, 210, 0.25), transparent 38%),
+    radial-gradient(circle at 88% 20%, rgba(21, 101, 192, 0.3), transparent 42%),
+    linear-gradient(120deg, #0d1b2a 0%, #0a1628 48%, #081426 100%);
 }
 
 :host-context(html.dark) .hero-eyebrow {
-  background: rgba(40, 30, 60, 0.6);
-  border-color: rgba(100, 80, 160, 0.3);
+  background: rgba(13, 33, 55, 0.6);
+  border-color: rgba(25, 118, 210, 0.3);
 }
 
 :host-context(html.dark) .hero-title {
@@ -796,7 +806,7 @@
 }
 
 :host-context(html.dark) .filters-panel {
-  background: rgba(30, 30, 42, 0.92);
+  background: rgba(13, 25, 42, 0.92);
   border-color: var(--bk-border);
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
 }
@@ -808,18 +818,18 @@
 }
 
 :host-context(html.dark) .service-card:hover {
-  border-color: rgba(152, 118, 238, 0.3) !important;
+  border-color: rgba(100, 181, 246, 0.3) !important;
   box-shadow: 0 18px 38px rgba(0, 0, 0, 0.35) !important;
 }
 
 :host-context(html.dark) .card-visual {
-  background: linear-gradient(135deg, #2a1f40, #251a38 52%, #221840);
+  background: linear-gradient(135deg, #0d2137, #0a1a2e 52%, #081830);
 }
 
 :host-context(html.dark) .service-icon {
-  background: rgba(40, 30, 60, 0.8);
-  border-color: rgba(100, 80, 160, 0.3);
-  color: #c4a8f0;
+  background: rgba(13, 33, 55, 0.8);
+  border-color: rgba(25, 118, 210, 0.3);
+  color: #90caf9;
 }
 
 :host-context(html.dark) .availability-badge {
@@ -850,4 +860,10 @@
 :host-context(html.dark) .pagination-container {
   background: rgba(30, 30, 42, 0.8);
   border-color: var(--bk-border);
+}
+
+:host-context(html.dark) .pagination-info {
+  background: rgba(13, 25, 42, 0.8);
+  border-color: var(--bk-border);
+  color: var(--bk-text-muted);
 }
