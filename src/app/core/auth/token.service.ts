@@ -8,6 +8,13 @@ import { AuthResponse, User } from '../../shared/models/auth';
  *   pestaña actual; se limpian al cerrarla y reducen la ventana de exposición.
  * - refreshToken va a localStorage: vida de 7 días y se reutiliza al recargar
  *   la página o reabrir el navegador para renovar la sesión.
+ *
+ * SEGURIDAD: localStorage es accesible por cualquier JS en la página (riesgo XSS).
+ * El backend DEBE configurar el refresh token como HttpOnly cookie (Set-Cookie) para
+ * mitigar esto. Mientras tanto, este enfoque es aceptable dado que:
+ *   1. La app no usa [innerHTML] ni bypassSecurityTrust* (sin vectores XSS conocidos).
+ *   2. Se recomienda agregar CSP estricto en index.html.
+ *   3. El accessToken de corta vida está en sessionStorage (limpiado al cerrar pestaña).
  */
 @Injectable({ providedIn: 'root' })
 export class TokenService {

@@ -17,7 +17,7 @@
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Descripción</mat-label>
       <textarea matInput formControlName="description" rows="3" maxlength="100"></textarea>
-      <mat-hint align="end">{{ form.controls.description.value?.length ?? 0 }} / 100</mat-hint>
+      <mat-hint align="end">{{ form.controls.description.value.length }} / 100</mat-hint>
     </mat-form-field>
 
     <div class="form-row">

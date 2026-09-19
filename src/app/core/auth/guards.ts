@@ -22,6 +22,13 @@ export const guestGuard: CanActivateFn = () => {
   return true;
 };
 
+/**
+ * Guard para rutas de administración.
+ *
+ * ⚠️ SEGURIDAD: Este guard solo protege la interfaz (UI-level).
+ * Un atacante puede modificar sessionStorage para bypass (role: 'ADMIN').
+ * El backend DEBE validar el role en el JWT de forma independiente.
+ */
 export const roleGuard =
   (role: Role): CanActivateFn =>
   () => {

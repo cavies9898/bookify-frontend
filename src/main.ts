@@ -6,4 +6,10 @@ import { App } from './app/app';
 
 registerLocaleData(es);
 
-bootstrapApplication(App, appConfig).catch((err) => console.error(err));
+bootstrapApplication(App, appConfig).catch(() => {
+  document.body.innerHTML = `
+    <div style="font-family:sans-serif;text-align:center;padding:3rem">
+      <h1>Error al iniciar la aplicación</h1>
+      <p>Recarga la página o contacta al administrador.</p>
+    </div>`;
+});

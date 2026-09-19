@@ -1,4 +1,9 @@
-import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+  withXsrfConfiguration,
+} from '@angular/common/http';
 import { LOCALE_ID, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter, withComponentInputBinding, withViewTransitions } from '@angular/router';
 import { MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
@@ -13,7 +18,14 @@ export const appConfig = {
 
     provideRouter(routes, withComponentInputBinding(), withViewTransitions()),
 
-    provideHttpClient(withInterceptors([authInterceptor, errorInterceptor]), withFetch()),
+    provideHttpClient(
+      withInterceptors([authInterceptor, errorInterceptor]),
+      withFetch(),
+      withXsrfConfiguration({
+        cookieName: 'XSRF-TOKEN',
+        headerName: 'X-XSRF-TOKEN',
+      }),
+    ),
 
     provideZonelessChangeDetection(),
 
