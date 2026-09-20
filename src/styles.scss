@@ -249,8 +249,14 @@ html.dark {
   border-radius: 12px;
 }
 
+.mat-mdc-snack-bar-container {
+  z-index: 10000 !important;
+}
+
 .mat-mdc-snack-bar-container .mdc-snackbar__surface {
   border-radius: 12px;
+  background: #323232 !important;
+  color: #fff !important;
 }
 
 .mat-mdc-dialog-container .mdc-dialog__surface {
