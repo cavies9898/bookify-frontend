@@ -315,21 +315,3 @@
   padding: 32px;
   color: var(--mat-sys-error);
 }
-
-/* ---------- Dark Mode ---------- */
-
-:host-context(html.dark) .info-hero {
-  background: var(--bk-primary-soft);
-}
-
-:host-context(html.dark) .info-icon {
-  background: var(--bk-primary);
-}
-
-:host-context(html.dark) .inline-error {
-  background: rgba(192, 57, 43, 0.15);
-}
-
-:host-context(html.dark) .success-box {
-  background: rgba(30, 142, 90, 0.15);
-}

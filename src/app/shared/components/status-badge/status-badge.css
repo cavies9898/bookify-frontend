@@ -31,13 +31,3 @@
   background: #fdecec;
   color: var(--bk-danger);
 }
-
-/* ---------- Dark Mode ---------- */
-
-:host-context(html.dark) .badge-confirmed {
-  background: rgba(30, 142, 90, 0.15);
-}
-
-:host-context(html.dark) .badge-cancelled {
-  background: rgba(192, 57, 43, 0.15);
-}

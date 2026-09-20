@@ -12,12 +12,6 @@
     0 12px 40px rgba(25, 118, 210, 0.05);
 }
 
-:host-context(html.dark) {
-  background: rgba(30, 30, 42, 0.8);
-  border-bottom-color: var(--bk-border);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-}
-
 .toolbar {
   max-width: 1120px;
   margin: 0 auto;

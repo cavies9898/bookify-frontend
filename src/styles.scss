@@ -331,6 +331,227 @@ html.dark .mat-mdc-select-panel {
   border-color: var(--bk-border);
 }
 
+/* ---------- Dark mode: componentes ---------- */
+
+html.dark app-header {
+  background: rgba(30, 30, 42, 0.8);
+  border-bottom-color: var(--bk-border);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+html.dark .badge-confirmed {
+  background: rgba(30, 142, 90, 0.15);
+}
+
+html.dark .badge-cancelled {
+  background: rgba(192, 57, 43, 0.15);
+}
+
+html.dark .map-coordinates {
+  background: rgba(30, 30, 42, 0.92);
+  color: var(--bk-text-muted);
+}
+
+html.dark .map-wrapper {
+  border-color: var(--bk-border);
+}
+
+html.dark .map-container {
+  filter: brightness(0.85) contrast(1.1);
+}
+
+html.dark .info-hero {
+  background: var(--bk-primary-soft);
+}
+
+html.dark .info-icon {
+  background: var(--bk-primary);
+}
+
+html.dark .inline-error {
+  background: rgba(192, 57, 43, 0.15);
+}
+
+html.dark .success-box {
+  background: rgba(30, 142, 90, 0.15);
+}
+
+html.dark .login-page {
+  background: #0e0e14;
+}
+
+html.dark .login-container {
+  background: var(--bk-surface);
+}
+
+html.dark .login-form {
+  background: var(--bk-surface);
+}
+
+html.dark .form-header h2 {
+  color: var(--bk-text);
+}
+
+html.dark .form-header p {
+  color: var(--bk-text-muted);
+}
+
+html.dark .calendar-card {
+  background: rgba(13, 25, 42, 0.96);
+  color: var(--bk-text);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.4);
+}
+
+html.dark .form-error {
+  background: rgba(192, 57, 43, 0.15);
+  border-color: rgba(192, 57, 43, 0.3);
+}
+
+html.dark .remember {
+  color: var(--bk-text-muted);
+}
+
+html.dark .register {
+  color: var(--bk-text-muted);
+}
+
+html.dark .terms {
+  color: var(--bk-text-muted);
+}
+
+html.dark .divider {
+  color: var(--bk-text-muted);
+}
+
+html.dark .divider::before,
+html.dark .divider::after {
+  background: var(--bk-border);
+}
+
+html.dark .divider span {
+  background: var(--bk-surface);
+}
+
+html.dark .mobile-logo {
+  color: var(--bk-text);
+}
+
+html.dark .password-toggle mat-icon {
+  color: var(--bk-text-muted);
+}
+
+html.dark .password-toggle:hover mat-icon {
+  color: var(--bk-primary);
+}
+
+html.dark .welcome {
+  color: var(--bk-primary);
+}
+
+html.dark .hero {
+  background:
+    radial-gradient(circle at 15% 40%, rgba(25, 118, 210, 0.25), transparent 38%),
+    radial-gradient(circle at 88% 20%, rgba(21, 101, 192, 0.3), transparent 42%),
+    linear-gradient(120deg, #0d1b2a 0%, #0a1628 48%, #081426 100%);
+}
+
+html.dark .hero-eyebrow {
+  background: rgba(13, 33, 55, 0.6);
+  border-color: rgba(25, 118, 210, 0.3);
+}
+
+html.dark .hero-title {
+  color: #e8e8ed;
+}
+
+html.dark .hero-subtitle {
+  color: #9a9aab;
+}
+
+html.dark .filters-panel {
+  background: rgba(13, 25, 42, 0.92);
+  border-color: var(--bk-border);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
+}
+
+html.dark .service-card {
+  background: var(--bk-surface) !important;
+  border-color: var(--bk-border) !important;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2) !important;
+}
+
+html.dark .service-card:hover {
+  border-color: rgba(100, 181, 246, 0.3) !important;
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.35) !important;
+}
+
+html.dark .card-visual {
+  background: linear-gradient(135deg, #0d2137, #0a1a2e 52%, #081830);
+}
+
+html.dark .service-icon {
+  background: rgba(13, 33, 55, 0.8);
+  border-color: rgba(25, 118, 210, 0.3);
+  color: #90caf9;
+}
+
+html.dark .availability-badge {
+  background: rgba(20, 30, 25, 0.8);
+  color: #6fcf90;
+}
+
+html.dark .service-name {
+  color: #e8e8ed;
+}
+
+html.dark .favorite-button {
+  color: #9a9aab;
+}
+
+html.dark .card-footer {
+  border-top-color: var(--bk-border);
+}
+
+html.dark .price-label {
+  color: #9a9aab;
+}
+
+html.dark .price {
+  color: #e8e8ed;
+}
+
+html.dark .pagination-container {
+  background: rgba(30, 30, 42, 0.8);
+  border-color: var(--bk-border);
+}
+
+html.dark .pagination-info {
+  background: rgba(13, 25, 42, 0.8);
+  border-color: var(--bk-border);
+  color: var(--bk-text-muted);
+}
+
+html.dark .active-badge {
+  background: rgba(30, 142, 90, 0.15);
+}
+
+html.dark .inactive-badge {
+  background: var(--bk-surface);
+  color: var(--bk-text-muted);
+}
+
+html.dark .success-icon {
+  background: rgba(52, 199, 123, 0.15);
+}
+
+html.dark .back-link a {
+  color: var(--bk-text-muted);
+}
+
+html.dark .back-link a:hover {
+  color: var(--bk-primary);
+}
+
 /* ---------- Accesibilidad ---------- */
 
 :focus-visible {

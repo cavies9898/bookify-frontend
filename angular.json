@@ -28,7 +28,8 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"]
+            "styles": ["src/styles.scss"],
+            "allowedCommonJsDependencies": ["leaflet"]
           },
           "configurations": {
             "production": {
@@ -58,8 +59,7 @@
               "sourceMap": true
             }
           },
-          "defaultConfiguration": "production",
-          "allowedCommonJsDependencies": ["leaflet"]
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular/build:dev-server",

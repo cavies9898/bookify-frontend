@@ -133,14 +133,3 @@ tbody tr:last-child td {
   padding: 32px;
   color: var(--mat-sys-error);
 }
-
-/* ---------- Dark Mode ---------- */
-
-:host-context(html.dark) .active-badge {
-  background: rgba(30, 142, 90, 0.15);
-}
-
-:host-context(html.dark) .inactive-badge {
-  background: var(--bk-surface);
-  color: var(--bk-text-muted);
-}
