@@ -58,7 +58,8 @@
               "sourceMap": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "production",
+          "allowedCommonJsDependencies": ["leaflet"]
         },
         "serve": {
           "builder": "@angular/build:dev-server",
