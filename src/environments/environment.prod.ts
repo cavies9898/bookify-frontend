@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: `${window.location.origin}/api`,
+  apiUrl: 'https://bookify-backend-1qs6.onrender.com/api',
   currency: 'MXN',
 };
